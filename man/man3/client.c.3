@@ -1,0 +1,210 @@
+.TH "Y:/Documents/ragnarok/src/client/client.c" 3 "Thu Mar 22 2018" "Version 0.0.1" "ragnarok" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Y:/Documents/ragnarok/src/client/client.c \- File containing Functions for the client\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <unistd\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <stdarg\&.h>\fP
+.br
+\fC#include <errno\&.h>\fP
+.br
+\fC#include <net/if\&.h>\fP
+.br
+\fC#include <sys/ioctl\&.h>\fP
+.br
+\fC#include <sys/stat\&.h>\fP
+.br
+\fC#include <sys/types\&.h>\fP
+.br
+\fC#include <time\&.h>\fP
+.br
+\fC#include <include/client\&.h>\fP
+.br
+\fC#include <include/xml\&.h>\fP
+.br
+\fC#include <include/common\&.h>\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBSTRING_LEN\fP   2048"
+.br
+.ti -1c
+.RI "#define \fBBUFSIZE\fP   1024 /* read 1024 bytes at a time */"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBsend_data\fP (int sock2server, const char *data2send,\&.\&.\&.)"
+.br
+.RI "Function to send data to server\&. example usage : init socket : "
+.ti -1c
+.RI "int \fBread_and_send_data\fP (const char *xmlfile)"
+.br
+.RI "Read data in XML file then send it to the server using \fBsend_data()\fP function\&. This function is used in main() "
+.ti -1c
+.RI "int \fBinit_client_daemon\fP (void)"
+.br
+.RI "init deamon for the client First we check if the pidfile exists\&. If it exists, it means client is already running\&. Print pid of process the quit\&. "
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "int \fBsock\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+File containing Functions for the client\&. 
+
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Mathieu Hautebas 
+.RE
+.PP
+\fBDate:\fP
+.RS 4
+22 March 2018 
+.RE
+.PP
+
+.PP
+Definition in file \fBclient\&.c\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "int init_client_daemon (void)"
+
+.PP
+init deamon for the client First we check if the pidfile exists\&. If it exists, it means client is already running\&. Print pid of process the quit\&. 
+.PP
+.nf
+if (file_exists(pidfile))
+{
+    fp = fopen(pidfile, "r");
+    fprintf(stdout, "[-] ragnarok is already running\n");
+    getline(&pid_val, &len, fp);
+    fprintf(stdout, "[i] PID = %s\r", pid_val);
+    fclose(fp);
+    exit(-1);
+}
+
+.fi
+.PP
+ We create a normal process and a child process\&. We kill parent process and set a new session\&. Close stdin, stdout and stderr for ragnarok 
+.PP
+.nf
+close(STDIN_FILENO);
+close(STDOUT_FILENO);
+close(STDERR_FILENO);
+
+.fi
+.PP
+ 
+.PP
+\fBReturns:\fP
+.RS 4
+returns 0 if everything's done well or a number != 0 if any issue or just exit()\&. 
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+https://www.thegeekstuff.com/2012/02/c-daemon-process/ 
+.RE
+.PP
+
+.PP
+Definition at line 155 of file client\&.c\&.
+.SS "int read_and_send_data (const char * xmlfile)"
+
+.PP
+Read data in XML file then send it to the server using \fBsend_data()\fP function\&. This function is used in main() 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIxmlfile\fP : path or name of file\&. 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+returns 0 if everything's done well or a number != 0 if any issue\&. 
+.RE
+.PP
+
+.PP
+Definition at line 106 of file client\&.c\&.
+.SS "int send_data (int sock2server, const char * data2send,  \&.\&.\&.)"
+
+.PP
+Function to send data to server\&. example usage : init socket : 
+.PP
+.nf
+int sock; 
+.fi
+.PP
+ call this function like this : 
+.PP
+.nf
+int number = 12;
+send_data(sock, "number is : %d", number);
+
+.fi
+.PP
+ When you use va_arg() 'function' on the va_list obtained from va_start(), the va_list is modified, when passed to another function it is NOT the same as you got at the beginning That's why I'm creating two va_lists first one is the fprintf equivalent and the other one is sprintf\&. Then I copy vargs to vargs_out and vargs_log like this : 
+.PP
+.nf
+copy vargs -> vargs_out (stdout) & vargs_log (client.log) 
+.fi
+.PP
+ 
+.PP
+.nf
+va_copy(vargs_out, vargs);
+va_copy(vargs_log, vargs);
+
+.fi
+.PP
+ 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsock2server\fP the socket we will use to deal with the server\&. 
+.br
+\fIdata2send\fP : the date we will send\&. 
+.br
+\fI\&.\&.\&.\fP : other params like printf() 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+returns 0 if everything's done well or a number != 0 if any issue\&. 
+.RE
+.PP
+\fBSee also:\fP
+.RS 4
+https://stackoverflow.com/questions/27126387/vfprintf-throws-segfault-but-input-is-well-defined#comment42752821_27126509 
+.RE
+.PP
+
+.PP
+Definition at line 57 of file client\&.c\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for ragnarok from the source code\&.
