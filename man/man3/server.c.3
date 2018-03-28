@@ -1,8 +1,8 @@
-.TH "Y:/Documents/ragnarok/src/server/server.c" 3 "Thu Mar 22 2018" "Version 0.0.1" "ragnarok" \" -*- nroff -*-
+.TH "src/server/server.c" 3 "Wed Mar 28 2018" "Version 0.0.1" "Ragnarok" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
-Y:/Documents/ragnarok/src/server/server.c \- file containing functions for the server\&.  
+src/server/server.c \- file containing functions for the server\&.  
 
 .SH SYNOPSIS
 .br
@@ -34,11 +34,11 @@ Y:/Documents/ragnarok/src/server/server.c \- file containing functions for the s
 .ti -1c
 .RI "void \fBINThandler\fP (int sig)"
 .br
-.RI "Catch ctrl+c to close sock and exit correctly Since it's a deamon this function is useless\&. I keep it for the moment\&. "
+.RI "\fICatch ctrl+c to close sock and exit correctly Since it's a deamon this function is useless\&. I keep it for the moment\&. \fP"
 .ti -1c
 .RI "int \fBinit_srv_daemon\fP (void)"
 .br
-.RI "init deamon for the server First we check if the pidfile exists\&. If it exists, it means client is already running\&. Print pid of process the quit\&. "
+.RI "\fIinit deamon for the server First we check if the pidfile exists\&. If it exists, it means client is already running\&. Print pid of process the quit\&. \fP"
 .in -1c
 .SS "Variables"
 
@@ -64,8 +64,6 @@ Mathieu Hautebas
 .RE
 .PP
 
-.PP
-Definition in file \fBserver\&.c\fP\&.
 .SH "Function Documentation"
 .PP 
 .SS "int init_srv_daemon (void)"
@@ -74,24 +72,24 @@ Definition in file \fBserver\&.c\fP\&.
 init deamon for the server First we check if the pidfile exists\&. If it exists, it means client is already running\&. Print pid of process the quit\&. 
 .PP
 .nf
-if (file_exists(pidfile))
-{
-    fp = fopen(pidfile, "r");
-    fprintf(stdout, "[-] ragnarok is already running\n");
-    getline(&pid_val, &len, fp);
-    fprintf(stdout, "[i] PID = %s\r", pid_val);
-    fclose(fp);
-    exit(-1);
-}
+1 if (file_exists(pidfile))
+2 {
+3     fp = fopen(pidfile, "r");
+4     fprintf(stdout, "[-] ragnarok is already running\n");
+5     getline(&pid_val, &len, fp);
+6     fprintf(stdout, "[i] PID = %s\r", pid_val);
+7     fclose(fp);
+8     exit(-1);
+9 }
 
 .fi
 .PP
  We create a normal process and a child process\&. We kill parent process and set a new session\&. Close stdin, stdout and stderr for ragnarok 
 .PP
 .nf
-close(STDIN_FILENO);
-close(STDOUT_FILENO);
-close(STDERR_FILENO);
+1 close(STDIN_FILENO);
+2 close(STDOUT_FILENO);
+3 close(STDERR_FILENO);
 
 .fi
 .PP
@@ -108,8 +106,6 @@ https://www.thegeekstuff.com/2012/02/c-daemon-process/
 .RE
 .PP
 
-.PP
-Definition at line 62 of file server\&.c\&.
 .SS "void INThandler (int sig)"
 
 .PP
@@ -121,8 +117,6 @@ void, no return just exit() the program
 .RE
 .PP
 
-.PP
-Definition at line 28 of file server\&.c\&.
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for ragnarok from the source code\&.
+Generated automatically by Doxygen for Ragnarok from the source code\&.

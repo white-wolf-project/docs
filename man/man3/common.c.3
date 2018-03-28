@@ -1,8 +1,8 @@
-.TH "Y:/Documents/ragnarok/src/common.c" 3 "Thu Mar 22 2018" "Version 0.0.1" "ragnarok" \" -*- nroff -*-
+.TH "src/common.c" 3 "Wed Mar 28 2018" "Version 0.0.1" "Ragnarok" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
-Y:/Documents/ragnarok/src/common.c \- File containing common code used client and server\&.  
+src/common.c \- File containing common code used client and server\&.  
 
 .SH SYNOPSIS
 .br
@@ -40,47 +40,47 @@ Y:/Documents/ragnarok/src/common.c \- File containing common code used client an
 .ti -1c
 .RI "void \fBversion\fP ()"
 .br
-.RI "prints version informations : TOOLNAME, VERSION, DATE and TIME "
+.RI "\fIprints version informations : TOOLNAME, VERSION, DATE and TIME \fP"
 .ti -1c
 .RI "void \fBdebug\fP (const char *format,\&.\&.\&.)"
 .br
-.RI "We call this function almost everywhere\&. But it prints to stdout/stderr only when you build the project in DEBUG mode (we use #ifdef DEBUG \&.\&.\&. #endif) "
+.RI "\fIWe call this function almost everywhere\&. But it prints to stdout/stderr only when you build the project in DEBUG mode (we use #ifdef DEBUG \&.\&.\&. #endif) \fP"
 .ti -1c
 .RI "bool \fBfile_exists\fP (const char *file)"
 .br
-.RI "booleen function to check if a file exists "
+.RI "\fIbooleen function to check if a file exists \fP"
 .ti -1c
 .RI "int \fBrun_python\fP (const char *pyscript)"
 .br
-.RI "Function based on libpyton, use to run Python 3 scripts run like this : "
+.RI "\fIFunction based on libpyton, use to run Python 3 scripts run like this : \fP"
 .ti -1c
 .RI "char * \fBget_date_and_time\fP (void)"
 .br
-.RI "get date and time (thank you captain obvious) This function is used in iwlist to get the time of the scan You can use it like this "
+.RI "\fIget date and time (thank you captain obvious) This function is used in iwlist to get the time of the scan You can use it like this \fP"
 .ti -1c
 .RI "char * \fBget_txt\fP (const char *str, const char *p1, const char *p2)"
 .br
-.RI "Find text between two patterns This function is use to check when XML start and ends Then we split log and XML Simple usage : cut useless stuff\&. "
+.RI "\fIFind text between two patterns This function is use to check when XML start and ends Then we split log and XML Simple usage : cut useless stuff\&. \fP"
 .ti -1c
 .RI "void \fBinit_xml\fP (char *docname)"
 .br
-.RI "Start xml process\&. Call this function once to start XML related stuff Make sure these vars are initialized\&. "
+.RI "\fIStart xml process\&. Call this function once to start XML related stuff Make sure these vars are initialized\&. \fP"
 .ti -1c
 .RI "void \fBend_xml\fP (char *docname)"
 .br
-.RI "End xml process\&. Call this function once we are done with XML related stuff\&. "
+.RI "\fIEnd xml process\&. Call this function once we are done with XML related stuff\&. \fP"
 .ti -1c
 .RI "int \fBget_instance_pid\fP (const char *file)"
 .br
-.RI "Get PID of client or server process located in a file\&. We call this function find the PID then we kill client or server process\&. "
+.RI "\fIGet PID of client or server process located in a file\&. We call this function find the PID then we kill client or server process\&. \fP"
 .ti -1c
 .RI "char * \fBget_wireless\fP (void)"
 .br
-.RI "Function to get wireless interface example usage : Create a pointer to char\&. "
+.RI "\fIFunction to get wireless interface example usage : Create a pointer to char\&. \fP"
 .ti -1c
 .RI "char * \fBget_ip\fP (const char *net_interface)"
 .br
-.RI "Function to get IP address of an Interface example usage : Create a pointer to char\&. "
+.RI "\fIFunction to get IP address of an Interface example usage : Create a pointer to char\&. \fP"
 .in -1c
 .SS "Variables"
 
@@ -121,8 +121,6 @@ Mathieu Hautebas
 .RE
 .PP
 
-.PP
-Definition in file \fBcommon\&.c\fP\&.
 .SH "Function Documentation"
 .PP 
 .SS "void debug (const char * format,  \&.\&.\&.)"
@@ -143,8 +141,6 @@ void, no return
 .RE
 .PP
 
-.PP
-Definition at line 51 of file common\&.c\&.
 .SS "void end_xml (char * docname)"
 
 .PP
@@ -166,8 +162,6 @@ use \fBinit_xml()\fP before this function
 .RE
 .PP
 
-.PP
-Definition at line 201 of file common\&.c\&.
 .SS "bool file_exists (const char * file)"
 
 .PP
@@ -184,15 +178,13 @@ true if file exists, or false if file is not found
 .RE
 .PP
 
-.PP
-Definition at line 66 of file common\&.c\&.
 .SS "char* get_date_and_time (void)"
 
 .PP
 get date and time (thank you captain obvious) This function is used in iwlist to get the time of the scan You can use it like this 
 .PP
 .nf
-printf("%s\n", get_date_and_time());
+1 printf("%s\n", get_date_and_time());
 
 .fi
 .PP
@@ -204,8 +196,6 @@ curr_time; with print to stdout, output is like this : '02/03/18-15:12:32'
 .RE
 .PP
 
-.PP
-Definition at line 108 of file common\&.c\&.
 .SS "int get_instance_pid (const char * file)"
 
 .PP
@@ -227,8 +217,6 @@ only works with one-line files
 .RE
 .PP
 
-.PP
-Definition at line 219 of file common\&.c\&.
 .SS "char* get_ip (const char * net_interface)"
 
 .PP
@@ -241,8 +229,8 @@ char *my_interface;
  Here is how you call it 
 .PP
 .nf
-my_interface = get_ip();
-printf("interface IP is : %s\n", my_interface);
+1 my_interface = get_ip();
+2 printf("interface IP is : %s\n", my_interface);
 
 .fi
 .PP
@@ -264,18 +252,16 @@ https://stackoverflow.com/questions/2283494/get-ip-address-of-an-interface-on-li
 .RE
 .PP
 
-.PP
-Definition at line 293 of file common\&.c\&.
 .SS "char* get_txt (const char * str, const char * p1, const char * p2)"
 
 .PP
 Find text between two patterns This function is use to check when XML start and ends Then we split log and XML Simple usage : cut useless stuff\&. 
 .PP
 .nf
-char new_buf[12];
-sprintf(new_buf, "%sa", buffer);
-channel_out = get_txt(new_buf, "Channel:", "a");
-send_data(sock, "channel : %s\n", channel_out);
+1 char new_buf[12];
+2 sprintf(new_buf, "%sa", buffer);
+3 channel_out = get_txt(new_buf, "Channel:", "a");
+4 send_data(sock, "channel : %s\n", channel_out);
 
 .fi
 .PP
@@ -301,8 +287,6 @@ Used in the server part
 .RE
 .PP
 
-.PP
-Definition at line 138 of file common\&.c\&.
 .SS "char* get_wireless (void)"
 
 .PP
@@ -315,8 +299,8 @@ char *my_wireless_interface;
  Here is how you call it 
 .PP
 .nf
-my_wireless_interface = get_wireless();
-printf("wireless interface found : %s\n", my_wireless_interface);
+1 my_wireless_interface = get_wireless();
+2 printf("wireless interface found : %s\n", my_wireless_interface);
 
 .fi
 .PP
@@ -338,17 +322,15 @@ Only tested on Linux Operating System\&.
 .RE
 .PP
 
-.PP
-Definition at line 252 of file common\&.c\&.
 .SS "void init_xml (char * docname)"
 
 .PP
 Start xml process\&. Call this function once to start XML related stuff Make sure these vars are initialized\&. 
 .PP
 .nf
-xmlDocPtr doc = NULL;
-xmlNodePtr root = NULL, device_AP_name = NULL, info_ap = NULL;
-xmlNodePtr device_AP_name_child = NULL, info_ap_child = NULL;
+1 xmlDocPtr doc = NULL;
+2 xmlNodePtr root = NULL, device_AP_name = NULL, info_ap = NULL;
+3 xmlNodePtr device_AP_name_child = NULL, info_ap_child = NULL;
 
 .fi
 .PP
@@ -365,15 +347,13 @@ void, no return\&.
 .RE
 .PP
 
-.PP
-Definition at line 175 of file common\&.c\&.
 .SS "int run_python (const char * pyscript)"
 
 .PP
 Function based on libpyton, use to run Python 3 scripts run like this : 
 .PP
 .nf
-run_python("file\&.py");
+1 run_python("file\&.py");
 
 .fi
 .PP
@@ -390,8 +370,6 @@ run_python("file\&.py");
 .RE
 .PP
 
-.PP
-Definition at line 84 of file common\&.c\&.
 .SS "void version ()"
 
 .PP
@@ -403,8 +381,6 @@ void, no return
 .RE
 .PP
 
-.PP
-Definition at line 34 of file common\&.c\&.
 .SH "Author"
 .PP 
-Generated automatically by Doxygen for ragnarok from the source code\&.
+Generated automatically by Doxygen for Ragnarok from the source code\&.
