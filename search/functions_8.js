@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['version',['version',['../common_8c.html#aadd58a2bd505eba3564c7483be1a6140',1,'common.c']]]
+  ['logger',['logger',['../common_8c.html#a06e80f4ecc2cc910976093284e739e35',1,'common.c']]]
 ];

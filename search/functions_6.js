@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['send_5fdata',['send_data',['../client_8c.html#a2115aac37fa5155548a6a301b5715116',1,'client.c']]]
+  ['handle_5fxml_5fdata',['handle_xml_data',['../server__util_8c.html#a3b4b1dddb1d71dec2d2744bfa9e31846',1,'server_util.c']]]
 ];

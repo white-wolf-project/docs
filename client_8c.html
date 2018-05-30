@@ -108,6 +108,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <code>#include &lt;sys/stat.h&gt;</code><br />
 <code>#include &lt;sys/types.h&gt;</code><br />
 <code>#include &lt;time.h&gt;</code><br />
+<code>#include &lt;netdb.h&gt;</code><br />
+<code>#include &lt;sys/socket.h&gt;</code><br />
+<code>#include &lt;libxml/parser.h&gt;</code><br />
 <code>#include &lt;include/client.h&gt;</code><br />
 <code>#include &lt;include/xml.h&gt;</code><br />
 <code>#include &lt;include/common.h&gt;</code><br />
@@ -129,9 +132,12 @@ Functions</h2></td></tr>
 <tr class="memitem:ab0fde9947f8e6257dcc6cdb2e04fc3b0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#ab0fde9947f8e6257dcc6cdb2e04fc3b0">read_and_send_data</a> (const char *xmlfile)</td></tr>
 <tr class="memdesc:ab0fde9947f8e6257dcc6cdb2e04fc3b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read data in XML file then send it to the server using <a class="el" href="client_8c.html#a2115aac37fa5155548a6a301b5715116" title="Function to send data to server. example usage : init socket : ">send_data()</a> function. This function is used in main()  <a href="#ab0fde9947f8e6257dcc6cdb2e04fc3b0">More...</a><br /></td></tr>
 <tr class="separator:ab0fde9947f8e6257dcc6cdb2e04fc3b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac65e4d3f0a6dc0cf938cb269bc15d5ed"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#ac65e4d3f0a6dc0cf938cb269bc15d5ed">init_client_daemon</a> (void)</td></tr>
-<tr class="memdesc:ac65e4d3f0a6dc0cf938cb269bc15d5ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">init deamon for the client First we check if the pidfile exists. If it exists, it means client is already running. Print pid of process the quit.  <a href="#ac65e4d3f0a6dc0cf938cb269bc15d5ed">More...</a><br /></td></tr>
-<tr class="separator:ac65e4d3f0a6dc0cf938cb269bc15d5ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acae06cdc119fc281aa70ccf35321614b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#acae06cdc119fc281aa70ccf35321614b">init_client</a> (int server, char *host, char *port, struct addrinfo **results)</td></tr>
+<tr class="memdesc:acae06cdc119fc281aa70ccf35321614b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to init network stuff for the client.  <a href="#acae06cdc119fc281aa70ccf35321614b">More...</a><br /></td></tr>
+<tr class="separator:acae06cdc119fc281aa70ccf35321614b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7de23aa8f295a0d7b502e93509f6dcc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="client_8c.html#aa7de23aa8f295a0d7b502e93509f6dcc">init_client_daemon</a> (const char *pidfile)</td></tr>
+<tr class="memdesc:aa7de23aa8f295a0d7b502e93509f6dcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">init deamon for the client First we check if the pidfile exists. If it exists, it means client is already running. Print pid of process the quit.  <a href="#aa7de23aa8f295a0d7b502e93509f6dcc">More...</a><br /></td></tr>
+<tr class="separator:aa7de23aa8f295a0d7b502e93509f6dcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -144,22 +150,78 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>sock</b></td></tr>
 <dl class="section author"><dt>Author</dt><dd>Mathieu Hautebas </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>22 March 2018 </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="ac65e4d3f0a6dc0cf938cb269bc15d5ed"></a>
+<a class="anchor" id="acae06cdc119fc281aa70ccf35321614b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int init_client </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>server</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>host</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct addrinfo **&#160;</td>
+          <td class="paramname"><em>results</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Function to init network stuff for the client. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">server</td><td></td></tr>
+    <tr><td class="paramname">host</td><td>: pointer to char, it's the ip address of the server </td></tr>
+    <tr><td class="paramname">port</td><td>: port of the server to deal with </td></tr>
+    <tr><td class="paramname">results</td><td>: pointer in struct addrinfo </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>returns 0 if everything's done well or a number != 0 if any issue or just exit(). </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aa7de23aa8f295a0d7b502e93509f6dcc"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">int init_client_daemon </td>
           <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>pidfile</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>init deamon for the client First we check if the pidfile exists. If it exists, it means client is already running. Print pid of process the quit. </p>
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;if (file_exists(pidfile))</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;{</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;    fp = fopen(pidfile, &quot;r&quot;);</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;    fprintf(stdout, &quot;[-] ragnarok is already running\n&quot;);</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    getline(&amp;pid_val, &amp;len, fp);</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    fprintf(stdout, &quot;[i] PID = %s\r&quot;, pid_val);</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    fclose(fp);</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    exit(-1);</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;}</div></div><!-- fragment --><p> We create a normal process and a child process. We kill parent process and set a new session. Close stdin, stdout and stderr for ragnarok </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;close(STDIN_FILENO);</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;close(STDOUT_FILENO);</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;close(STDERR_FILENO);</div></div><!-- fragment --> <dl class="section return"><dt>Returns</dt><dd>returns 0 if everything's done well or a number != 0 if any issue or just exit(). </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pidfile</td><td><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;if (file_exists(pidfile))</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;{</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;    fp = fopen(pidfile, &quot;r&quot;);</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;    fprintf(stdout, &quot;[-] ragnarok is already running\n&quot;);</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    getline(&amp;pid_val, &amp;len, fp);</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    fprintf(stdout, &quot;[i] PID = %s\r&quot;, pid_val);</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    fclose(fp);</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    exit(-1);</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;}</div></div><!-- fragment --> We create a normal process and a child process. We kill parent process and set a new session. Close stdin, stdout and stderr for ragnarok <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;close(STDIN_FILENO);</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;close(STDOUT_FILENO);</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;close(STDERR_FILENO);</div></div><!-- fragment --> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>returns 0 if everything's done well or a number != 0 if any issue or just exit(). </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a href="https://www.thegeekstuff.com/2012/02/c-daemon-process/">https://www.thegeekstuff.com/2012/02/c-daemon-process/</a> </dd></dl>
 
 </div>

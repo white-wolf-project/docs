@@ -105,25 +105,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <code>#include &lt;sys/ioctl.h&gt;</code><br />
 <code>#include &lt;libxml/parser.h&gt;</code><br />
 <code>#include &lt;libxml/tree.h&gt;</code><br />
-<code>#include &lt;include/client_tool.h&gt;</code><br />
 <code>#include &lt;include/client.h&gt;</code><br />
 <code>#include &lt;include/common.h&gt;</code><br />
+<code>#include &lt;include/xml.h&gt;</code><br />
 <code>#include &quot;sysnet/include/network.h&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:aadd58a2bd505eba3564c7483be1a6140"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8c.html#aadd58a2bd505eba3564c7483be1a6140">version</a> ()</td></tr>
-<tr class="memdesc:aadd58a2bd505eba3564c7483be1a6140"><td class="mdescLeft">&#160;</td><td class="mdescRight">prints version informations : TOOLNAME, VERSION, DATE and TIME  <a href="#aadd58a2bd505eba3564c7483be1a6140">More...</a><br /></td></tr>
+<tr class="memdesc:aadd58a2bd505eba3564c7483be1a6140"><td class="mdescLeft">&#160;</td><td class="mdescRight">prints version informations : TOOLNAME, TOOL_VERSION, DATE and TIME  <a href="#aadd58a2bd505eba3564c7483be1a6140">More...</a><br /></td></tr>
 <tr class="separator:aadd58a2bd505eba3564c7483be1a6140"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adacf73b93ca6fa3985f2999f7d6b3b29"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8c.html#adacf73b93ca6fa3985f2999f7d6b3b29">debug</a> (const char *format,...)</td></tr>
 <tr class="memdesc:adacf73b93ca6fa3985f2999f7d6b3b29"><td class="mdescLeft">&#160;</td><td class="mdescRight">We call this function almost everywhere. But it prints to stdout/stderr only when you build the project in DEBUG mode (we use #ifdef DEBUG ... #endif)  <a href="#adacf73b93ca6fa3985f2999f7d6b3b29">More...</a><br /></td></tr>
 <tr class="separator:adacf73b93ca6fa3985f2999f7d6b3b29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06e80f4ecc2cc910976093284e739e35"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8c.html#a06e80f4ecc2cc910976093284e739e35">logger</a> (int type, const char *file, int line, const char *format,...)</td></tr>
+<tr class="memdesc:a06e80f4ecc2cc910976093284e739e35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Since we daemonize our tools, we need logs to check if everything's done as we expected initial idea is from rxi on Github.  <a href="#a06e80f4ecc2cc910976093284e739e35">More...</a><br /></td></tr>
+<tr class="separator:a06e80f4ecc2cc910976093284e739e35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a249fc72c0a36bb56c6b55bd81518274a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8c.html#a249fc72c0a36bb56c6b55bd81518274a">file_exists</a> (const char *file)</td></tr>
 <tr class="memdesc:a249fc72c0a36bb56c6b55bd81518274a"><td class="mdescLeft">&#160;</td><td class="mdescRight">booleen function to check if a file exists  <a href="#a249fc72c0a36bb56c6b55bd81518274a">More...</a><br /></td></tr>
 <tr class="separator:a249fc72c0a36bb56c6b55bd81518274a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2f464a79cc21af307709b94eda6c084"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8c.html#ad2f464a79cc21af307709b94eda6c084">run_python</a> (const char *pyscript)</td></tr>
-<tr class="memdesc:ad2f464a79cc21af307709b94eda6c084"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function based on libpyton, use to run Python 3 scripts run like this :  <a href="#ad2f464a79cc21af307709b94eda6c084">More...</a><br /></td></tr>
-<tr class="separator:ad2f464a79cc21af307709b94eda6c084"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a770368500017a97e797a5e74ad2a6c26"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8c.html#a770368500017a97e797a5e74ad2a6c26">run_python</a> (const char *pyscript, const char *param[])</td></tr>
+<tr class="memdesc:a770368500017a97e797a5e74ad2a6c26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function based on libpyton, use to run Python 3 scripts run like this :  <a href="#a770368500017a97e797a5e74ad2a6c26">More...</a><br /></td></tr>
+<tr class="separator:a770368500017a97e797a5e74ad2a6c26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a469630b20bb6976c69f2affc55d2ad22"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8c.html#a469630b20bb6976c69f2affc55d2ad22">get_date_and_time</a> (void)</td></tr>
 <tr class="memdesc:a469630b20bb6976c69f2affc55d2ad22"><td class="mdescLeft">&#160;</td><td class="mdescRight">get date and time (thank you captain obvious) This function is used in iwlist to get the time of the scan You can use it like this  <a href="#a469630b20bb6976c69f2affc55d2ad22">More...</a><br /></td></tr>
 <tr class="separator:a469630b20bb6976c69f2affc55d2ad22"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -199,8 +202,8 @@ xmlNodePtr&#160;</td><td class="memItemRight" valign="bottom"><b>info_ap_child</
 <p>We call this function almost everywhere. But it prints to stdout/stderr only when you build the project in DEBUG mode (we use #ifdef DEBUG ... #endif) </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">format</td><td>: Path or name of python script to run </td></tr>
-    <tr><td class="paramname">...</td><td>: like printf, which are params </td></tr>
+    <tr><td class="paramname">format</td><td>: data like printf </td></tr>
+    <tr><td class="paramname">...</td><td>: like printf, variable params </td></tr>
   </table>
   </dd>
 </dl>
@@ -420,7 +423,65 @@ xmlNodePtr&#160;</td><td class="memItemRight" valign="bottom"><b>info_ap_child</
 
 </div>
 </div>
-<a class="anchor" id="ad2f464a79cc21af307709b94eda6c084"></a>
+<a class="anchor" id="a06e80f4ecc2cc910976093284e739e35"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int logger </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>line</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>format</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Since we daemonize our tools, we need logs to check if everything's done as we expected initial idea is from rxi on Github. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>: it's the type of log we want ragnarok.log (0) or ragnarok-srv.log (1) </td></tr>
+    <tr><td class="paramname">file</td><td>: pointer to char, name of the file (eg <a class="el" href="common_8c.html" title="File containing common code used client and server. ">common.c</a>) </td></tr>
+    <tr><td class="paramname">line</td><td>: line of file (eg <a class="el" href="common_8c.html" title="File containing common code used client and server. ">common.c</a>:67) </td></tr>
+    <tr><td class="paramname">format</td><td>: data like printf </td></tr>
+    <tr><td class="paramname">...</td><td>: like printf, variable params </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>returns 0 or an int != 0 if there is a fail </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a href="https://github.com/rxi/log.c">https://github.com/rxi/log.c</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a770368500017a97e797a5e74ad2a6c26"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -428,16 +489,27 @@ xmlNodePtr&#160;</td><td class="memItemRight" valign="bottom"><b>info_ap_child</
           <td class="memname">int run_python </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>pyscript</em></td><td>)</td>
+          <td class="paramname"><em>pyscript</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>param</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Function based on libpyton, use to run Python 3 scripts run like this : </p>
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;run_python(&quot;file.py&quot;);</div></div><!-- fragment --> <dl class="params"><dt>Parameters</dt><dd>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;run_python(&quot;file.py&quot;, NULL);</div></div><!-- fragment --><p> or </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;run_python(&quot;file.py&quot;, args);</div></div><!-- fragment --> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pyscript</td><td>: Path or name of python script to run </td></tr>
+    <tr><td class="paramname">param</td><td>: argument to set; put NULL if there is no arg needed. Array needs only three args </td></tr>
   </table>
   </dd>
 </dl>
@@ -458,7 +530,7 @@ xmlNodePtr&#160;</td><td class="memItemRight" valign="bottom"><b>info_ap_child</
       </table>
 </div><div class="memdoc">
 
-<p>prints version informations : TOOLNAME, VERSION, DATE and TIME </p>
+<p>prints version informations : TOOLNAME, TOOL_VERSION, DATE and TIME </p>
 <dl class="section return"><dt>Returns</dt><dd>void, no return </dd></dl>
 
 </div>
